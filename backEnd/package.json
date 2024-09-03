@@ -10,8 +10,13 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "axios": "^1.7.7",
+    "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "email-existence": "^0.1.6",
+    "email-validator": "^2.0.4",
+    "email-verifier": "^0.4.1",
+    "emailjs": "^4.0.3",
     "express": "^4.19.2",
     "gmail-validation": "^0.0.4",
     "mail-exists": "^1.1.0",

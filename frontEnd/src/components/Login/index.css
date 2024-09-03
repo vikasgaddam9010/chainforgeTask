@@ -19,7 +19,6 @@ label{
     
 }
 .input-username{
-    
     border-radius: 5px;
     border: 2px solid black;
     padding: 5px 10px;
@@ -33,7 +32,6 @@ label{
 }
 .password-filed{
     border-radius: 5px;
-    margin-bottom: 20px;
     border: 2px solid black;
     display: flex;
     justify-content: space-between;
@@ -41,7 +39,6 @@ label{
     padding: 5px 10px;
 }
 .input-password{
-    font-size: 16px;
     width: 85%;
     border: none;
     background-color: transparent;
@@ -50,7 +47,7 @@ label{
 .main-btn{
     background-color: rgb(72, 72, 218);
     color: aliceblue;
-    border: 3px solid blue;
+    border: 3px solid rgb(72, 72, 218);
     padding: 5px 10px;
     border-radius: 5px;
     font-weight: 800;
