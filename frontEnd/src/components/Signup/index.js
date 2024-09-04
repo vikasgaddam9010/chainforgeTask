@@ -23,30 +23,38 @@ const Signup = () => {
 
     const handleSubmit = async e => {
         e.preventDefault()
-        setApiState("loading")
-        if(email === "" && password === ""){
-            return alert("Please Enter Valid Credentials")
-        }
-        const url = "http://localhost:5000/register/"
-        const options = {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-              },
-            body: JSON.stringify({email, password})
-        }
-        const serverRes = await fetch(url, options)
-        console.log(serverRes)
-        const serverJsonData = await serverRes.json()
-        if(serverRes.ok){
-            setApiState("success")
-            setEmail("")
-            setPassword("")
-            setServerState(serverJsonData.message)
-            navigate("/log-in")
+        console.log(email, password)
+        if(email !== "" && password !== ""){
+            console.log(err, error)
+            if(err.length === 0 && error.length === 0){
+                setApiState("loading")
+                setServerState("")
+                const url = "http://localhost:5000/register/"
+                const options = {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({email, password})
+                }
+                const serverRes = await fetch(url, options)
+                console.log(serverRes)
+                const serverJsonData = await serverRes.json()
+                if(serverRes.ok){
+                    setApiState("success")
+                    setEmail("")
+                    setPassword("")
+                    setServerState(serverJsonData.message)
+                    navigate("/log-in")
+                }else{
+                    setApiState("failed")
+                    setServerState(serverJsonData.message)
+                }         
+            }else{
+                return alert("Must Pass Mail and Password Validations")
+            }              
         }else{
-            setApiState("failed")
-            setServerState(serverJsonData.message)
+            return alert("Please Enter Valid Credentials")
         }
     }
 
@@ -72,6 +80,12 @@ const Signup = () => {
         }
     }
 
+    const handleChange = (event) => {
+        const value = event.target.value;
+        setPassword(value);
+        validatePassword(value);
+    };
+
     const handleUsername = e =>{
         const gmailRegex = /^[^\s@]+@gmail\.com$/;
         const result = gmailRegex.test(e.target.value);
@@ -84,12 +98,6 @@ const Signup = () => {
             setMailError("Plase Enter Correct Mail")
         }
     }
-
-    const handleChange = (event) => {
-        const value = event.target.value;
-        setPassword(value);
-        validatePassword(value);
-    };
 
     console.log(serverState)
     return (
@@ -108,9 +116,9 @@ const Signup = () => {
                 {error.length > 0 ? <p className='error'>{error}</p> : <p>  </p>}
                 
                 <div style={{display: "flex", justifyContent:"space-between"}}>
-                    {apiState === "loading" ? <button className='main-btn'  disabled>PLease Wait</button> :<button className='main-btn' type="submit">Signup</button>}<button onClick={handleSingup}>Login</button>
+                    {apiState === "loading" ? <button style={{backgroundColor:"lightgray", border:"none"}} className='main-btn' disabled>PLease Wait</button> :<button className='main-btn' type="submit">Signup</button>}<button onClick={handleSingup}>Login</button>
                 </div>
-                <p>{serverState}</p>
+                <p style={{textAlign:"center", color:"brown", fontWeight:"700", marginTop:"30px"}}>{serverState}</p>
             </form>
         </div>
     )

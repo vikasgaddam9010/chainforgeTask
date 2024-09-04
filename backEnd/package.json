@@ -19,6 +19,7 @@
     "emailjs": "^4.0.3",
     "express": "^4.19.2",
     "gmail-validation": "^0.0.4",
+    "jsonwebtoken": "^9.0.2",
     "mail-exists": "^1.1.0",
     "nodemon": "^3.1.4",
     "path": "^0.12.7",
